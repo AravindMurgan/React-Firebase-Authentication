@@ -1,17 +1,39 @@
-import React,{useRef} from 'react';
+import React,{useRef,useState} from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
+import { useAuth } from '../components/context/authContext';
+
 
 const SignUp = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const confrimPasswordRef = useRef();
+    const {SignUp} = useAuth();
+    const [error,setError]= useState('')
 
+    const handleEvent = async (e)=>{
+        e.preventDefault();
+
+        if(passwordRef.current.value !== confrimPasswordRef){
+            return setError('Password do not match')
+        }
+
+        try {
+            setError('')
+            await SignUp(emailRef.current.value,passwordRef.current.value)
+        } catch (err) {
+            setError('Failed to signup')
+        }
+
+        
+    }
 	return (
 		<>
 			<Card>
 				<Card.Body>
-					<Form>
-						<h2 className='text-center mb-4'>Sign Up</h2>
+                    <h2 className='text-center mb-4'>Sign Up</h2>
+                    {error && <Alert variant="danger" >{error}</Alert>}
+					<Form onSubmit={handleEvent}>
+						
 						<Form.Group>
 							<Form.Label>Email</Form.Label>
 							<Form.Control type='email' ref={emailRef} required></Form.Control>
