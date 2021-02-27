@@ -3,21 +3,15 @@ import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../components/context/authContext';
 import {Link} from 'react-router-dom';
 
-
-const SignUp = () => {
+const Login = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const confrimPasswordRef = useRef();
 	const { signUp, currentUser } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	const handleEvent = async (e) => {
 		e.preventDefault();
-
-		if (passwordRef.current.value !== confrimPasswordRef.current.value) {
-			return setError('Password do not match');
-		}
 
 		try {
 			setError('');
@@ -47,29 +41,21 @@ const SignUp = () => {
 								required
 							></Form.Control>
 						</Form.Group>
-						<Form.Group>
-							<Form.Label>Confirm Password</Form.Label>
-							<Form.Control
-								type='password'
-								ref={confrimPasswordRef}
-								required
-							></Form.Control>
-						</Form.Group>
 						<Button
 							disabled={loading}
 							type='submit'
 							className='w-100 text-center '
 						>
-							Sign Up
+							Log In
 						</Button>
 					</Form>
 				</Card.Body>
 			</Card>
 			<div className='w-100 text-center mt-2'>
-				Already have an account? <Link to='/login'>Log In</Link>
+				Need an account ? <Link to='/signup'>Sign Up</Link>
 			</div>
 		</>
 	);
 };
 
-export default SignUp;
+export default Login;
