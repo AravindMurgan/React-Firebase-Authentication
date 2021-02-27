@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import AuthState from '../components/context/authContext';
 import Login from './login';
+import Dashboard from './dashboard';
+import PrivateRoute from './privateRoute';
 function App() {
 	return (
 		<>
@@ -16,7 +18,7 @@ function App() {
 					<div className='w-100' style={{ maxWidth: '400px' }}>
 						<Router>
 							<Switch>
-								{/* <Route exact path='/' component={Dashboard} /> */}
+								<PrivateRoute exact path='/' component={Dashboard} />
 								<Route path='/signup' component={SignUp} />
 								<Route path='/login' component={Login} />
 							</Switch>

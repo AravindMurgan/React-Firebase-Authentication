@@ -8,7 +8,7 @@ const SignUp = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const confrimPasswordRef = useRef();
-	const { signUp, currentUser } = useAuth();
+	const { signUp } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 
