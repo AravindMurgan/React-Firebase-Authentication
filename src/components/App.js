@@ -7,6 +7,7 @@ import AuthState from '../components/context/authContext';
 import Login from './login';
 import Dashboard from './dashboard';
 import PrivateRoute from './privateRoute';
+import ForgotPassword from './forgotPassword';
 function App() {
 	return (
 		<>
@@ -21,6 +22,7 @@ function App() {
 								<PrivateRoute exact path='/' component={Dashboard} />
 								<Route path='/signup' component={SignUp} />
 								<Route path='/login' component={Login} />
+								<Route path='/forgotpassword' component={ForgotPassword} />
 							</Switch>
 						</Router>
 					</div>
