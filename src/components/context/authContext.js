@@ -13,18 +13,25 @@ const AuthState = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 
 	const signUp = (email, password) => {
-		auth.createUserWithEmailAndPassword(email, password);
+		return auth.createUserWithEmailAndPassword(email, password);
 	};
 
 	const login = (email, password) => {
-		auth.signInWithEmailAndPassword(email, password);
+		return auth.signInWithEmailAndPassword(email, password);
 	};
 
 	const logout = () => {
-		auth.signOut();
+		return auth.signOut();
 	};
 	const resetpassword = (email) => {
-		auth.sendPasswordResetEmail(email);
+		return auth.sendPasswordResetEmail(email);
+	};
+
+	const updateEmail = (email) => {
+		return currentUser.updateEmail(email);
+	};
+	const updatePassword = (password) => {
+		return currentUser.updatePassword(password);
 	};
 
 	useEffect(() => {
@@ -41,7 +48,9 @@ const AuthState = ({ children }) => {
 		signUp,
 		login,
 		logout,
-        resetpassword
+		resetpassword,
+		updateEmail,
+		updatePassword,
 	};
 
 	return (
